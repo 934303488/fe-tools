@@ -5,6 +5,7 @@
     "build": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/fe-test-tools\": \"index.html\"\n  }\n}' > app.json ",
     "build:dev": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/fe-test-tools\": \"index.html\"\n  }\n}' > app.json ",
     "build:qa": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/fe-test-tools\": \"index.html\"\n  }\n}' > app.json ",
+    "build:prod": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/fe-test-tools\": \"index.html\"\n  }\n}' > app.json ",
     "postinstall": "umi generate tmp",
     "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
     "test": "umi-test",
