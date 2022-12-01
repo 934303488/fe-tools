@@ -1,17 +1,16 @@
 // import Cookie from 'js-cookie';
 // import {http} from 'fiture';
 // import keycloak, { logout } from '@/keycloak';
-import {TOOLS_API} from '../../utils/api';
-import axios from 'axios'
+import { TOOLS_API } from '../../utils/api';
+import axios from 'axios';
 // import fetch from '@/utils/fetch';
-
 
 const domainMap = {
   // api: `${process.env.API_URL}/api`,
-  // order: "http://172.22.0.178:8081",
-  order: "http://stable.test-tools.nt.dev.xiguacity.cn",
+  // order: "http://localhost:8081",
+  order: 'http://stable.test-tools.nt.dev.xiguacity.cn',
 };
-const gen = domain => params => {
+const gen = (domain) => (params) => {
   let url = params;
   let method = 'POST';
   const paramsArray = params.split(' ');
@@ -42,7 +41,7 @@ const gen = domain => params => {
 };
 
 const api = {};
-Object.keys(TOOLS_API).forEach(key => {
+Object.keys(TOOLS_API).forEach((key) => {
   api[key] = gen('order')(TOOLS_API[key]);
 });
 

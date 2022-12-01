@@ -6,6 +6,8 @@ export default {
 export const TOOLS_API = {
   getBearerToken: '/getBearerToken',
   getAppList: '/appList',
+  encryptPhone: '/encryptPhone',
+  decryptPhone: '/decryptPhone',
 };
 
 export const ORDER_API = {

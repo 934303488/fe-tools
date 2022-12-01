@@ -29,9 +29,11 @@ const tailLayout = {
 
 const Page: React.FC = () => {
   const [bearerToken, setBearerToken] = useState('');
+  const [phoneCypherStr, setPhoneCypherStr] = useState('');
   const [appList, setAppList] = useState([]);
   const [form] = Form.useForm();
   const [formDownload] = Form.useForm();
+  const [formCypher] = Form.useForm();
 
   const onFinish = async (values: any) => {
     const content = await api.getBearerToken(values);
@@ -48,6 +50,22 @@ const Page: React.FC = () => {
     const content = await api.getAppList();
     console.log(content.data.body);
     setAppList(content.data.body);
+  };
+
+  const phoneNumCypher = async (values: any) => {
+    if (
+      values.phoneNum != '' &&
+      values.phoneNum &&
+      values.phoneNum != undefined
+    ) {
+      const content = await api.encryptPhone(values);
+      console.log('encryptPhone>' + content.data.body);
+      setPhoneCypherStr(content.data.body);
+    } else {
+      const content = await api.decryptPhone(values);
+      console.log('decryptPhone' + content.data.body);
+      setPhoneCypherStr(content.data.body);
+    }
   };
 
   function restValue(formInstance: FormInstance) {
@@ -196,6 +214,53 @@ const Page: React.FC = () => {
                 <Button
                   htmlType="button"
                   onClick={() => restValue(formDownload)}
+                  style={{ margin: 10 }}
+                >
+                  重置
+                </Button>
+              </Form.Item>
+            </Form>
+          </Card>
+        </Col>
+        <Col span={8}>
+          <Card title="User手机号加解密" style={{ width: 400, margin: 10 }}>
+            <Form
+              {...layout}
+              form={formCypher}
+              name="phoneCypher"
+              onFinish={phoneNumCypher}
+            >
+              <Form.Item
+                name="phoneNum"
+                label="手机号"
+                rules={[{ message: '请输入手机号' }]}
+              >
+                <Input placeholder="请输入手机号" allowClear />
+              </Form.Item>
+              <Form.Item
+                name="decryptPhoneNum"
+                label="加密手机号"
+                rules={[{ message: '请输入加密字符串' }]}
+              >
+                <Input placeholder="请输入加密字符串" allowClear />
+              </Form.Item>
+              <Form.Item label="计算结果">
+                <TextArea
+                  id="phoneNumCypherStr"
+                  style={{ height: 120 }}
+                  value={phoneCypherStr}
+                />
+              </Form.Item>
+              <Form.Item {...tailLayout}>
+                <Button type="primary" htmlType="submit">
+                  加密
+                </Button>
+                <Button style={{ margin: 10 }} htmlType="submit" type="primary">
+                  解密
+                </Button>
+                <Button
+                  htmlType="button"
+                  onClick={() => restValue(formCypher)}
                   style={{ margin: 10 }}
                 >
                   重置

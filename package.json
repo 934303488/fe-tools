@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "start": "umi dev",
-    "build": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/\": \"index.html\"\n  }\n}' > app.json ",
+    "build": "umi build",
     "build:dev": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/\": \"index.html\"\n  }\n}' > app.json ",
     "build:qa": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/\": \"index.html\"\n  }\n}' > app.json ",
     "build:prod": "umi build && cd ./dist && touch app.json && echo '{\n \"servers\": [],\n \"routes\": {\n  \"/\": \"index.html\"\n  }\n}' > app.json  ",
