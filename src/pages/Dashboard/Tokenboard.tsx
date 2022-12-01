@@ -1,19 +1,8 @@
-import {
-  Button,
-  Card,
-  Col,
-  Form,
-  FormItemProps,
-  FormProps,
-  Input,
-  Row,
-  Select,
-} from 'antd';
+import { Button, Card, Col, Form, Input, Row, Select } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import { FormInstance } from 'antd/es/form';
 import React, { useCallback, useEffect, useState } from 'react';
-import styles from './Tokenboard.less';
-import { api } from './service.js';
+import { api } from './service';
 
 const { Option } = Select;
 

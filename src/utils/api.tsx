@@ -3,7 +3,7 @@ export default {
   getMusic: '/music/list',
 };
 
-export const TOOLS_API = {
+export const TOOLS_API: any = {
   getBearerToken: '/getBearerToken',
   getAppList: '/appList',
   encryptPhone: '/encryptPhone',
