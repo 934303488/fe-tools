@@ -3,10 +3,9 @@ import TextArea from 'antd/lib/input/TextArea';
 import { FormInstance } from 'antd/es/form';
 import React, { useCallback, useEffect, useState } from 'react';
 import { api } from './service';
+import ChangeToken from './ChangeToken';
 
 const { Option } = Select;
-
-// const {token}=bearerToken;
 
 const layout = {
   labelCol: { span: 8 },
@@ -101,6 +100,7 @@ const Page: React.FC = () => {
               >
                 <Select
                   placeholder="选择要获取token的服务"
+                  showSearch
                   allowClear
                   onClick={getAppList}
                 >
@@ -258,6 +258,7 @@ const Page: React.FC = () => {
             </Form>
           </Card>
         </Col>
+        <ChangeToken></ChangeToken>
       </Row>
     </>
   );
