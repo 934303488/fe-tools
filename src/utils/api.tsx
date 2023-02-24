@@ -9,6 +9,7 @@ export const TOOLS_API: any = {
   encryptPhone: '/encryptPhone',
   decryptPhone: '/decryptPhone',
   getTesterToken: '/getTesterToken',
+  timeLineSync: '/timeLineSync',
 };
 
 export const ORDER_API = {

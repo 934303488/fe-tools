@@ -1,8 +1,8 @@
 import { Button, Card, Col, Form } from 'antd';
 import TextArea from 'antd/lib/input/TextArea';
 import React, { useState } from 'react';
-import { api } from './service';
-import { onCopyValue } from '../common';
+import { api } from '../service';
+import { onCopyValue } from '../../common';
 
 const ChangeToken: React.FC = () => {
   const [form] = Form.useForm();

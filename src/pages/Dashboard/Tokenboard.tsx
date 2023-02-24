@@ -3,7 +3,8 @@ import TextArea from 'antd/lib/input/TextArea';
 import { FormInstance } from 'antd/es/form';
 import React, { useCallback, useEffect, useState } from 'react';
 import { api } from './service';
-import ChangeToken from './ChangeToken';
+import ChangeToken from './components/ChangeToken';
+import TimeLineSync from './components/TimeLineSync';
 
 const { Option } = Select;
 
@@ -258,7 +259,8 @@ const Page: React.FC = () => {
             </Form>
           </Card>
         </Col>
-        <ChangeToken></ChangeToken>
+        <ChangeToken />
+        <TimeLineSync />
       </Row>
     </>
   );
