@@ -20,7 +20,7 @@ const TimeLineSync: React.FC = () => {
 
   return (
     <Col span={8}>
-      <Card title="获取测试账号token" style={{ width: 400, margin: 10 }}>
+      <Card title="同步IM消息到timeline" style={{ width: 400, margin: 10 }}>
         {/* <div id ='showAlert' style={{display:'none',width: 120,marginLeft:100}}>
           <Alert
             message="同步成功" 
