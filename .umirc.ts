@@ -10,7 +10,6 @@ export default defineConfig({
   layout: {
     name: '测试工具平台',
     locale: false,
-    logo: 'https://stc-cms.beisen.com/CmsPortal/605840/605840_medias_2022426_2022426logo.png?v=637865926946630000',
   },
   routes: [
     // { path: '/', component: '@/pages/index' },
