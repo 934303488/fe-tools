@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { api } from './service';
 import ChangeToken from './components/ChangeToken';
 import TimeLineSync from './components/TimeLineSync';
+import { onCopyValue } from '../common';
 
 const { Option } = Select;
 
@@ -60,19 +61,6 @@ const Page: React.FC = () => {
   function restValue(formInstance: FormInstance) {
     formInstance?.resetFields();
   }
-
-  const onCopyValue = () => {
-    let txa = document.getElementById('tokenTextArea');
-    const selection = window.getSelection();
-    const range = document.createRange();
-    if (selection != null && selection.rangeCount > 0) {
-      selection.removeAllRanges();
-      txa != null ? range.selectNode(txa) : null;
-      selection.addRange(range);
-      // 执行浏览器复制命令
-      document.execCommand('copy');
-    }
-  };
 
   const fetchData = useCallback(() => {
     getAppList;
@@ -146,7 +134,7 @@ const Page: React.FC = () => {
                 <Button
                   htmlType="button"
                   style={{ margin: 10 }}
-                  onClick={onCopyValue}
+                  onClick={() => onCopyValue('tokenTextArea')}
                 >
                   复制
                 </Button>

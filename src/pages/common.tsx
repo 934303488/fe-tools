@@ -1,4 +1,5 @@
 import { FormInstance } from 'antd/es/form';
+import { message } from 'antd';
 
 function restValue(formInstance: FormInstance) {
   formInstance?.resetFields();
@@ -14,6 +15,7 @@ const onCopyValue = (id: string) => {
     selection.addRange(range);
     // 执行浏览器复制命令
     document.execCommand('copy');
+    message.success('复制成功');
   }
 };
 
