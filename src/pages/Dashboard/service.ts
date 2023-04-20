@@ -1,12 +1,9 @@
 import { TOOLS_API } from '../../utils/api';
-import fetch from '@/utils/fetch';
 import http from '@/utils/axios';
-import { useCallback } from 'react';
-import axios from 'axios';
 
 const domainMap: any = {
   // api: `${process.env.API_URL}/api`,
-  // order: "http://localhost:8081",
+  // api: "http://localhost:8081",
   api: 'http://stable.test-tools.nt.dev.xiguacity.cn',
 };
 const gen = (domain: any) => (params: any) => {
@@ -19,22 +16,19 @@ const gen = (domain: any) => (params: any) => {
   }
 
   const apiFunction = (data = {}, options: any) =>
-    // axios({
-    //   url: domainMap[domain] + url,
-    //   data,
-    //   method,
-    //   // onUnauthorized: logout,
-    //   filterEmptyParam: false,
-    //   headers: {
-    //     // Authorization: `Bearer ${keycloak.token}`,
-    //     // _EMPLOYEE_USERNAME: Cookie.get('username'),
-    //     // 'X-NT-App-Meta': JSON.stringify(window.APP_METADATA || {}),
-    //   },
-    //   ...options,
-    // });
-
-    axios(fetch(method, data, domainMap[domain] + url, options));
-
+    http({
+      url: domainMap[domain] + url,
+      data,
+      method,
+      // onUnauthorized: logout,
+      filterEmptyParam: false,
+      headers: {
+        // Authorization: `Bearer ${keycloak.token}`,
+        // _EMPLOYEE_USERNAME: Cookie.get('username'),
+        // 'X-NT-App-Meta': JSON.stringify(window.APP_METADATA || {}),
+      },
+      ...options,
+    });
   // 方便权限组件获接口的地址；
   apiFunction.url = url;
 

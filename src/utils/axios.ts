@@ -1,47 +1,29 @@
-import axios from 'axios';
+import { message } from 'antd';
+import axios, { AxiosError } from 'axios';
 
-const http = axios.create({
-  // url,
-  // data,
-  // method,
-  // // onUnauthorized: logout,
-  // filterEmptyParam: false,
-  headers: {
-    // Authorization: `Bearer ${keycloak.token}`,
-    // _EMPLOYEE_USERNAME: Cookie.get('username'),
-    // 'X-NT-App-Meta': JSON.stringify(window.APP_METADATA || {}),
-  },
-});
+const http = axios.create({});
 
 http.interceptors.response.use(
   (response: any) => {
     // 处理正常响应...
-    return response;
+    console.log('response:' + response.status);
+    if (response.status === 200) {
+      return response;
+    }
+    message.error(response.status + ',服务器异常,' + response.msg);
+    const error = new Error(response.statusText);
+    error.message = response;
+    throw error;
   },
   (error: any) => {
-    if (error && error.response && error.response.status === 500) {
-      alert('服务器异常，请稍候再试!');
+    if (error && error.response && error.response.status != 200) {
+      alert('服务器异常，' + error.response.msg);
+    }
+    if (new AxiosError(error)) {
+      message.error('网络异常:' + error.code);
     }
 
     return Promise.reject(error);
   },
 );
-// .then((res) => {
-//   console.log('成功'+res.data.body);
-//   let response = null;
-//   if (res.status === 200) {
-//     response = res.data;
-//     // callback && callback(response);
-//     return http;
-//   }
-//   else{
-//     alert(res.data)
-//   }
-// })
-// .catch((err) => {
-//   console.log('失败', err);
-// })
-// .then(() => {
-//   // 总会执行
-// });
 export default http;

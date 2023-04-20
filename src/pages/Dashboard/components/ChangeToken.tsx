@@ -11,7 +11,7 @@ const ChangeToken: React.FC = () => {
   const onFinish = async (values: any) => {
     const content = await api.getTesterToken(values);
     console.log('content:' + content);
-    // setToken(content.data.body);
+    setToken(content.data.body);
     console.log(content.data);
   };
 
