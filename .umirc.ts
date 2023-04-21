@@ -1,5 +1,7 @@
 import React from 'react';
 import { defineConfig } from 'umi';
+import { layout } from './src/config/config';
+import { LogoutOutlined } from '@ant-design/icons';
 export default defineConfig({
   title: '测试工具平台',
   favicon:
@@ -7,10 +9,7 @@ export default defineConfig({
   nodeModulesTransform: {
     type: 'none',
   },
-  layout: {
-    name: '测试工具平台',
-    locale: false,
-  },
+  layout: layout,
   routes: [
     // { path: '/', component: '@/pages/index' },
     { path: '/', component: '@/pages/Dashboard/Tokenboard' },

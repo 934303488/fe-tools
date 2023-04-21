@@ -10,14 +10,14 @@ http.interceptors.response.use(
     if (response.status === 200) {
       return response;
     }
-    message.error(response.status + ',服务器异常,' + response.msg);
+    message.error(`[${response.status}] 服务器异常,${response.msg}`);
     const error = new Error(response.statusText);
     error.message = response;
     throw error;
   },
   (error: any) => {
     if (error && error.response && error.response.status != 200) {
-      alert('服务器异常，' + error.response.msg);
+      message.error('服务器异常，' + error.response.msg);
     }
     if (new AxiosError(error)) {
       message.error('网络异常:' + error.code);
