@@ -1,7 +1,6 @@
 import React from 'react';
 import { defineConfig } from 'umi';
 import { layout } from './src/config/config';
-import { LogoutOutlined } from '@ant-design/icons';
 export default defineConfig({
   title: '测试工具平台',
   favicon:
