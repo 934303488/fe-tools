@@ -16,12 +16,15 @@ http.interceptors.response.use(
     throw error;
   },
   (error: any) => {
-    if (error && error.response && error.response.status != 200) {
-      message.error('服务器异常，' + error.response.msg);
-    }
-    if (new AxiosError(error)) {
-      message.error('网络异常:' + error.code);
-    }
+    if (error) {
+      if (new AxiosError(error)) {
+        if (error.response) {
+          message.error(
+            `[${error.response.status}] 服务器异常:${error.response.statusText}`,
+          );
+        } else message.error('网络异常:' + error.code);
+      } else message.error('网络异常:' + error.code);
+    } else message.error('未知错误:' + error.code);
 
     return Promise.reject(error);
   },
