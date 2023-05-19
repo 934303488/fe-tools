@@ -17,9 +17,11 @@ const gen = (domain: any) => (params: any) => {
 
   const apiFunction = (data = {}, options: any) =>
     http({
-      url: domainMap[domain] + url,
+      url: !Object.keys(data).includes('suffix')
+        ? domainMap[domain] + url
+        : domainMap[domain] + url + data.suffix,
       data,
-      method,
+      method: data.method ? data.method : method,
       // onUnauthorized: logout,
       filterEmptyParam: false,
       headers: {
@@ -40,4 +42,4 @@ Object.keys(TOOLS_API).forEach((key) => {
   api[key] = gen('api')(TOOLS_API[key]);
 });
 
-export { api };
+export { api, domainMap };

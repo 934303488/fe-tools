@@ -10,6 +10,8 @@ export const TOOLS_API: any = {
   decryptPhone: '/decryptPhone',
   getTesterToken: '/getTesterToken',
   timeLineSync: '/timeLineSync',
+  orderImportFileGenerate: '/orderImportFile/generate',
+  orderImportFileDownload: '/orderImportFile/download/',
 };
 
 export const ORDER_API = {

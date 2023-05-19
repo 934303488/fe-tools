@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { api } from './service';
 import ChangeToken from './components/ChangeToken';
 import TimeLineSync from './components/TimeLineSync';
+import OrderImport from './components/OrderImport';
 import { onCopyValue } from '../common';
 
 const { Option } = Select;
@@ -22,17 +23,11 @@ const Page: React.FC = () => {
   const [phoneCypherStr, setPhoneCypherStr] = useState('');
   const [appList, setAppList] = useState([]);
   const [form] = Form.useForm();
-  const [formDownload] = Form.useForm();
   const [formCypher] = Form.useForm();
 
   const onFinish = async (values: any) => {
     const content = await api.getBearerToken(values);
     setBearerToken(content.data.body);
-    console.log(content.data);
-  };
-
-  const createFile = async (values: any) => {
-    const content = await api.getBearerToken(values);
     console.log(content.data);
   };
 
@@ -149,57 +144,7 @@ const Page: React.FC = () => {
             </Form>
           </Card>
         </Col>
-        <Col span={8}>
-          <Card title="生成导入订单文件" style={{ width: 400, margin: 10 }}>
-            <Form
-              {...layout}
-              form={formDownload}
-              name="matchFile"
-              onFinish={createFile}
-            >
-              <Form.Item
-                name="matchId"
-                label="赛事id"
-                rules={[{ required: true, message: '请输入赛事id' }]}
-              >
-                <Input placeholder="请输入赛事id" allowClear />
-              </Form.Item>
-              <Form.Item
-                name="schemeId"
-                label="售卖方案id"
-                rules={[{ required: true, message: '请输入售卖方案id' }]}
-              >
-                <Input placeholder="请输入售卖方案id" allowClear />
-              </Form.Item>
-              <Form.Item
-                name="fileNumber"
-                label="文件个数"
-                rules={[{ required: true, message: '请输入文件个数' }]}
-              >
-                <Input placeholder="请输入文件个数" allowClear />
-              </Form.Item>
-              <Form.Item
-                name="fileDataNumber"
-                label="单文件数据量"
-                rules={[{ required: true, message: '请输入单个文件数据数量' }]}
-              >
-                <Input placeholder="请输入单个文件数据数量" allowClear />
-              </Form.Item>
-              <Form.Item {...tailLayout}>
-                <Button type="primary" htmlType="submit">
-                  确认
-                </Button>
-                <Button
-                  htmlType="button"
-                  onClick={() => restValue(formDownload)}
-                  style={{ margin: 10 }}
-                >
-                  重置
-                </Button>
-              </Form.Item>
-            </Form>
-          </Card>
-        </Col>
+        <OrderImport />
         <Col span={8}>
           <Card title="User手机号加解密" style={{ width: 400, margin: 10 }}>
             <Form

@@ -11,12 +11,12 @@ export default defineConfig({
   layout: layout,
   routes: [
     // { path: '/', component: '@/pages/index' },
-    { path: '/', component: '@/pages/Dashboard/Tokenboard' },
+    { path: '/', component: '@/pages/Dashboard/Dashboard' },
     {
       path: '/dashboard',
       name: '工具',
       icon: 'tool',
-      component: '@/pages/Dashboard/Tokenboard',
+      component: '@/pages/Dashboard/Dashboard',
     },
   ],
   fastRefresh: {},
