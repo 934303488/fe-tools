@@ -15,11 +15,14 @@ const gen = (domain: any) => (params: any) => {
     [method, url] = paramsArray;
   }
 
-  const apiFunction = (data = {}, options: any) =>
+  const apiFunction = (data: any = {}, options: any) =>
     http({
       url: !Object.keys(data).includes('suffix')
         ? domainMap[domain] + url
         : domainMap[domain] + url + data.suffix,
+      responseType: !Object.keys(data).includes('responseType')
+        ? 'json'
+        : data.responseType,
       data,
       method: data.method ? data.method : method,
       // onUnauthorized: logout,

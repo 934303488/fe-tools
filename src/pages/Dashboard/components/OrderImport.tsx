@@ -3,6 +3,9 @@ import React from 'react';
 import { api, domainMap } from '../service';
 import { restValue } from '../../common';
 import { TOOLS_API } from '@/utils/api';
+import JSZip from 'jszip';
+import FileSaver from 'file-saver';
+import * as XLSX from 'xlsx';
 
 const OrderImport: React.FC = () => {
   const [formDownload] = Form.useForm();
@@ -10,13 +13,41 @@ const OrderImport: React.FC = () => {
   const createFile = async (values: any) => {
     const content = await api.orderImportFileGenerate(values);
     const fileList: [] = content.data.body;
-    fileList.forEach(async (file) => {
-      // const content = await api.orderImportFileDownload({suffix:file,method:"GET"})
-      // domainMap.api+TOOLS_API.orderImportFileDownload+file
-      window.open(domainMap.api + TOOLS_API.orderImportFileDownload + file);
+    const zip = new JSZip();
+    const fetchPromises = fileList.map(async (file) => {
+      const filecontent = await api.orderImportFileDownload({
+        suffix: file,
+        method: 'GET',
+        responseType: 'arraybuffer',
+      });
+      // 将相应内容解析为二进制数组
+      const content = new Uint8Array(filecontent.data);
+      // 使用 xlsx.js 将二进制数组解析为工作簿对象
+      const workbook = XLSX.read(content, { type: 'array' });
+      // 将 workbook 内容导出为二进制数组
+      const exportContent = XLSX.write(workbook, {
+        bookType: 'xlsx',
+        type: 'array',
+      });
+      const fileContentfile = new Blob([exportContent], {
+        type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      });
+      console.log('fileContentfile::' + fileContentfile);
+      // var link = document.createElement('a');
+      // link.href = window.URL.createObjectURL(fileContentfile);
+      // link.download = file;
+      // link.click();
+      zip.file(file, fileContentfile);
     });
-    console.info(fileList);
-    // await api.orderImportFileDownload();
+    Promise.all(fetchPromises)
+      .then(() => {
+        zip.generateAsync({ type: 'blob' }).then((content) => {
+          FileSaver.saveAs(content, 'orderfileList.zip');
+        });
+      })
+      .catch((error) => {
+        console.error('error:' + error);
+      });
   };
 
   return (
@@ -43,14 +74,14 @@ const OrderImport: React.FC = () => {
             <Input placeholder="请输入售卖方案id" allowClear />
           </Form.Item>
           <Form.Item
-            name="fileNumber"
+            name="fileCount"
             label="文件个数"
             rules={[{ required: true, message: '请输入文件个数' }]}
           >
             <Input placeholder="请输入文件个数" allowClear />
           </Form.Item>
           <Form.Item
-            name="dataNumber"
+            name="dataCount"
             label="单文件数据量"
             rules={[{ required: true, message: '请输入单个文件数据数量' }]}
           >

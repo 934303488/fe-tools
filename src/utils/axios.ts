@@ -6,7 +6,6 @@ const http = axios.create({});
 http.interceptors.response.use(
   (response: any) => {
     // 处理正常响应...
-    console.log('response:' + response.status);
     if (response.status === 200) {
       return response;
     }
