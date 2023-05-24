@@ -1,4 +1,13 @@
-import { Button, Card, Col, Form, Input, Select, message } from 'antd';
+import {
+  Button,
+  Card,
+  Col,
+  Form,
+  Input,
+  Select,
+  message,
+  InputNumber,
+} from 'antd';
 import React from 'react';
 import { api, domainMap } from '../service';
 import { restValue } from '../../common';
@@ -86,6 +95,19 @@ const OrderImport: React.FC = () => {
             rules={[{ required: true, message: '请输入单个文件数据数量' }]}
           >
             <Input placeholder="请输入单个文件数据数量" allowClear />
+          </Form.Item>
+          <Form.Item
+            name="beginPhoneNum"
+            label="起始手机号"
+            rules={[{ required: true, message: '请输入起始手机号' }]}
+          >
+            <InputNumber
+              placeholder="请输入11位数字"
+              minLength={11}
+              maxLength={11}
+              controls={false}
+              style={{ width: 200 }}
+            />
           </Form.Item>
           <Form.Item
           // {...tailLayout}
