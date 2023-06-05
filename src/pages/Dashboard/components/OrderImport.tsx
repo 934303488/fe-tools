@@ -7,11 +7,13 @@ import {
   Select,
   message,
   InputNumber,
+  Radio,
 } from 'antd';
 import React from 'react';
 import { api, domainMap } from '../service';
 import { restValue } from '../../common';
 import { TOOLS_API } from '@/utils/api';
+import { exportOrderType } from '@/utils/enum';
 import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
@@ -68,6 +70,17 @@ const OrderImport: React.FC = () => {
           name="matchFile"
           onFinish={createFile}
         >
+          <Form.Item
+            name="type"
+            label="订单类型"
+            rules={[{ required: true, message: '请选择赛事id' }]}
+          >
+            <Radio.Group>
+              {exportOrderType.map((item) => (
+                <Radio value={item.value}>{item.lable}</Radio>
+              ))}
+            </Radio.Group>
+          </Form.Item>
           <Form.Item
             name="matchId"
             label="赛事id"
