@@ -11,12 +11,18 @@ export default defineConfig({
   layout: layout,
   routes: [
     // { path: '/', component: '@/pages/index' },
-    { path: '/', component: '@/pages/Dashboard/Dashboard' },
+    { path: '/', redirect: '/dashboard' },
     {
       path: '/dashboard',
       name: '工具',
       icon: 'tool',
       component: '@/pages/Dashboard/Dashboard',
+    },
+    {
+      path: '/zz',
+      name: 'zz专属',
+      icon: 'tool',
+      component: '@/pages/zz/index',
     },
   ],
   fastRefresh: {},

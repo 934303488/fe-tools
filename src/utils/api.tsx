@@ -12,6 +12,7 @@ export const TOOLS_API: any = {
   timeLineSync: '/timeLineSync',
   orderImportFileGenerate: '/orderImportFile/generate',
   orderImportFileDownload: '/orderImportFile/download/',
+  AIGCRecharge: '/AIGCRecharge',
 };
 
 export const ORDER_API = {

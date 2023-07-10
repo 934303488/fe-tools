@@ -71,19 +71,23 @@ const OrderImport: React.FC = () => {
           onFinish={createFile}
         >
           <Form.Item
+            id="type"
             name="type"
             label="订单类型"
-            rules={[{ required: true, message: '请选择赛事id' }]}
+            rules={[{ required: true, message: '请选择订单类型' }]}
           >
             <Radio.Group>
               {exportOrderType.map((item) => (
-                <Radio value={item.value}>{item.lable}</Radio>
+                <Radio value={item.value} key={item.value}>
+                  {item.lable}
+                </Radio>
               ))}
             </Radio.Group>
           </Form.Item>
           <Form.Item
             name="matchId"
             label="赛事id"
+            key={2}
             rules={[{ required: true, message: '请输入赛事id' }]}
           >
             <Input placeholder="请输入赛事id" allowClear />
@@ -91,6 +95,7 @@ const OrderImport: React.FC = () => {
           <Form.Item
             name="schemeId"
             label="售卖方案id"
+            key={3}
             rules={[{ required: true, message: '请输入售卖方案id' }]}
           >
             <Input placeholder="请输入售卖方案id" allowClear />
@@ -98,6 +103,7 @@ const OrderImport: React.FC = () => {
           <Form.Item
             name="fileCount"
             label="文件个数"
+            key={4}
             rules={[{ required: true, message: '请输入文件个数' }]}
           >
             <Input placeholder="请输入文件个数" allowClear />
@@ -105,6 +111,7 @@ const OrderImport: React.FC = () => {
           <Form.Item
             name="dataCount"
             label="单文件数据量"
+            key={5}
             rules={[{ required: true, message: '请输入单个文件数据数量' }]}
           >
             <Input placeholder="请输入单个文件数据数量" allowClear />
@@ -112,6 +119,7 @@ const OrderImport: React.FC = () => {
           <Form.Item
             name="beginPhoneNum"
             label="起始手机号"
+            key={6}
             rules={[{ required: true, message: '请输入起始手机号' }]}
           >
             <InputNumber
