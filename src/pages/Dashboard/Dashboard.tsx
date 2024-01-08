@@ -6,6 +6,7 @@ import { api } from './service';
 import ChangeToken from './components/ChangeToken';
 import TimeLineSync from './components/TimeLineSync';
 import OrderImport from './components/OrderImport';
+import ChangeContact from './components/ChangeContact';
 import { onCopyValue } from '../common';
 
 const { Option } = Select;
@@ -194,6 +195,7 @@ const Page: React.FC = () => {
         </Col>
         <ChangeToken />
         <TimeLineSync />
+        <ChangeContact />
       </Row>
     </>
   );

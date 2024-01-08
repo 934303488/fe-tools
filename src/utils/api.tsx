@@ -13,6 +13,7 @@ export const TOOLS_API: any = {
   orderImportFileGenerate: '/orderImportFile/generate',
   orderImportFileDownload: '/orderImportFile/download/',
   AIGCRecharge: '/AIGCRecharge',
+  AddTeacher: '/addTeacher',
 };
 
 export const ORDER_API = {
