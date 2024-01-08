@@ -1,4 +1,4 @@
-FROM nginx:latest
+FROM hub.xiguacity.cn/runtime/nginx-sidecar:stable
  
-RUN mkdir /dist
-COPY ./dist /dist
+WORKDIR /opt/app-root/src
+ADD dist /opt/app-root/src
