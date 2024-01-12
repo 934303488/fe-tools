@@ -1,4 +1,4 @@
-import { Button, Card, Col, Form, Input, Select, message } from 'antd';
+import { Button, Card, Col, Form, Input, message, Select } from 'antd';
 import React from 'react';
 import { api } from '../service';
 
@@ -38,7 +38,8 @@ const ChangeContact: React.FC = () => {
             <Select
               options={[
                 { value: 'ADD_TEACHER', label: '加老师' },
-                { value: 'DELETE_TEACHER', label: '删除老师' },
+                { value: 'DELETE_TEACHER', label: '老师删除用户' },
+                { value: 'DELETE_TEACHER_FROM_USER', label: '用户删除老师' },
               ]}
             />
           </Form.Item>
