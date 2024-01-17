@@ -8,8 +8,9 @@ import {
   message,
   InputNumber,
   Radio,
+  RadioChangeEvent,
 } from 'antd';
-import React from 'react';
+import React, { useState } from 'react';
 import { api, domainMap } from '../service';
 import { restValue } from '../../common';
 import { TOOLS_API } from '@/utils/api';
@@ -18,8 +19,22 @@ import JSZip from 'jszip';
 import FileSaver from 'file-saver';
 import * as XLSX from 'xlsx';
 
+type FormValues = {
+  radioValue: string;
+  inputValue: string;
+};
+
 const OrderImport: React.FC = () => {
   const [formDownload] = Form.useForm();
+  const [formValues, setFormValues] = useState<FormValues>({
+    radioValue: '',
+    inputValue: '',
+  });
+
+  const handleRadioChange = (e: RadioChangeEvent) => {
+    console.info('radio' + formValues + '  ' + e.target.value);
+    setFormValues({ ...formValues, radioValue: e.target.value });
+  };
 
   const createFile = async (values: any) => {
     const content = await api.orderImportFileGenerate(values);
@@ -71,27 +86,36 @@ const OrderImport: React.FC = () => {
           onFinish={createFile}
         >
           <Form.Item
+            label="订单类型"
             id="type"
             name="type"
-            label="订单类型"
             rules={[{ required: true, message: '请选择订单类型' }]}
           >
             <Radio.Group>
               {exportOrderType.map((item) => (
-                <Radio value={item.value} key={item.value}>
+                <Radio
+                  value={item.value}
+                  key={item.value}
+                  checked={formValues.radioValue === item.value}
+                  onChange={handleRadioChange}
+                >
                   {item.lable}
                 </Radio>
               ))}
             </Radio.Group>
           </Form.Item>
-          <Form.Item
-            name="matchId"
-            label="赛事id"
-            key={2}
-            rules={[{ required: true, message: '请输入赛事id' }]}
-          >
-            <Input placeholder="请输入赛事id" allowClear />
-          </Form.Item>
+          {formValues.radioValue === 'competition' && (
+            <>
+              <Form.Item
+                name="matchId"
+                label="赛事id"
+                key={2}
+                rules={[{ required: true, message: '请输入赛事id' }]}
+              >
+                <Input placeholder="请输入赛事id" allowClear />
+              </Form.Item>
+            </>
+          )}
           <Form.Item
             name="schemeId"
             label="售卖方案id"

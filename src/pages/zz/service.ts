@@ -4,7 +4,7 @@ import http from '@/utils/axios';
 const domainMap: any = {
   // api: `${process.env.API_URL}/api`,
   // api: "http://localhost:8081",
-  api: 'http://stable.test-tools.nt.dev.xiguacity.cn',
+  api: 'http://stable.test-tools.nt.prod.xiguacity.cn',
 };
 const gen = (domain: any) => (params: any) => {
   let url = params;
