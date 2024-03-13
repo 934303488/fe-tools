@@ -7,6 +7,7 @@ import ChangeToken from './components/ChangeToken';
 import TimeLineSync from './components/TimeLineSync';
 import OrderImport from './components/OrderImport';
 import ChangeContact from './components/ChangeContact';
+import CustomMessageHandler from './components/CustomMessageHandler';
 import { onCopyValue } from '../common';
 
 const { Option } = Select;
@@ -196,6 +197,7 @@ const Page: React.FC = () => {
         <ChangeToken />
         <TimeLineSync />
         <ChangeContact />
+        <CustomMessageHandler />
       </Row>
     </>
   );

@@ -14,6 +14,7 @@ export const TOOLS_API: any = {
   orderImportFileDownload: '/orderImportFile/download/',
   AIGCRecharge: '/AIGCRecharge',
   AddTeacher: '/addTeacher',
+  CustomHandler: '/customHandler',
 };
 
 export const ORDER_API = {
