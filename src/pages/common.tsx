@@ -7,14 +7,9 @@ function restValue(formInstance: FormInstance) {
 
 const onCopyValue = (id: string) => {
   let txa = document.getElementById(id);
-  const selection = window.getSelection();
-  const range = document.createRange();
-  if (selection != null && selection.rangeCount > 0) {
-    selection.removeAllRanges();
-    txa != null ? range.selectNode(txa) : null;
-    selection.addRange(range);
-    // 执行浏览器复制命令
-    document.execCommand('copy');
+  if (txa) {
+    let txta = txa as HTMLInputElement | HTMLTextAreaElement;
+    navigator.clipboard.writeText(txta.value);
     message.success('复制成功');
   }
 };
