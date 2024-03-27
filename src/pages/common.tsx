@@ -5,11 +5,11 @@ function restValue(formInstance: FormInstance) {
   formInstance?.resetFields();
 }
 
-const onCopyValue = (id: string) => {
+const onCopyValue = async (id: string) => {
   let txa = document.getElementById(id);
   if (txa) {
     let txta = txa as HTMLInputElement | HTMLTextAreaElement;
-    navigator.clipboard.writeText(txta.value);
+    await navigator.clipboard.writeText(txta.value);
     message.success('复制成功');
   }
 };
