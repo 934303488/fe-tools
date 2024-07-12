@@ -72,6 +72,7 @@ const Page: React.FC = () => {
   return (
     <>
       <Row gutter={16}>
+        <CustomMessageHandler />
         <Col span={8}>
           <Card title="获取bearerToken" style={{ width: 400, margin: 10 }}>
             <Form
@@ -198,7 +199,6 @@ const Page: React.FC = () => {
         <ChangeToken />
         <TimeLineSync />
         <ChangeContact />
-        <CustomMessageHandler />
         <DateTimeNow />
       </Row>
     </>
